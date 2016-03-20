@@ -1,0 +1,83 @@
+<div class="modal-header">
+	<h4>DAO</h4>
+</div>
+ 
+<div class="modal-body">
+ 
+<form class="form-horizontal" name="formNewDAO">
+
+        <div class="form-group">
+            <label class="control-label col-xs-1">Name:</label>
+            <div class="col-xs-11">
+                <div class="input-group">
+                    <input type="text" name="nameDAO" class="form-control" placeholder="nombreDAO" ng-model="newDAO.name" required>
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formNewDAO.nameDAO.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formNewDAO.nameDAO.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-xs-1">GroupID:</label>
+            <div class="col-xs-11">
+                <div class="input-group">
+                    <input type="text" name="groupId" class="form-control" placeholder="groupId" ng-model="newDAO.groupId" required>
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formNewDAO.groupId.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formNewDAO.groupId.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-xs-1">ArtifactId:</label>
+            <div class="col-xs-11">
+                <div class="input-group">
+                    <input type="text" name="artifactId" class="form-control" placeholder="artifactId" ng-model="newDAO.artifactId" required>
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formNewDAO.artifactId.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formNewDAO.artifactId.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="control-label col-xs-1">Version:</label>
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <input type="text" name="version" class="form-control" placeholder="version" ng-model="newDAO.version" required>
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formNewDAO.version.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formNewDAO.version.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-xs-1"></div>
+            <div class="checkbox col-xs-5">
+                <label>
+                  <input type="checkbox" ng-model="newDAO.rellamada"> Rellamada
+                </label>
+              </div>
+        </div>
+ 
+ 
+ 
+    </form>
+     <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="guardarDAO()" ng-disabled="formNewDAO.$invalid">Guardar</button>
+            <button class="btn btn-warning" ng-click="cancel()" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+    </div>
+ 
+ </div>

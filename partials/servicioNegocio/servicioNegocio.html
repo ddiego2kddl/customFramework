@@ -1,0 +1,102 @@
+
+<div class="container">
+    <accordion close-others="oneAtATime">
+            <accordion-group heading="Url's Bankia">
+                <ul>
+                    <li>
+                        <a href="https://aqdes-stash.cm.es/stash/projects/IOISN/repos/ioisn_2/browse" target="_blank">Stash IOI</a>
+                    </li>
+                    <li>
+                        <p><a href="https://oie.epd.cm.es/OEmpresas/oie/pt_oie/Login/login_oie_1e" target="_blank">Entorno de Referencia</a> 2300003718401</p>
+                    </li>
+                </ul>
+            </accordion-group>
+    <accordion>
+    <hr>
+	<form class="form-horizontal" name="formServicioNegocio">
+        <div class="form-group">
+            <label class="control-label col-xs-1">Archivo:</label>
+            <div class="col-xs-5">
+                <div class="input-group">
+                    <input type="text" name="nameSNG"class="form-control" placeholder="nombreServicioNegocioSNG" ng-model="sng.name" required>
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formServicioNegocio.nameSNG.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formServicioNegocio.nameSNG.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+            <label class="control-label col-xs-1">Version:</label>
+            <div class="col-xs-3">
+                <div class="input-group">
+                    <input type="text" class="form-control"  placeholder="1.0 , 2.0 ..." ng-model="sng.version" required name="versionSNG">
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formServicioNegocio.versionSNG.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formServicioNegocio.versionSNG.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="control-label col-xs-1">Paqueteria:</label>
+            <div class="col-xs-11">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="com.bankia.sn.xxxx.xxxxx" ng-model="sng.paqueteria" required name="paqueteriaSNG">
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formServicioNegocio.paqueteriaSNG.$invalid"></span>
+                        <span class="glyphicon glyphicon-ok green" ng-hide="formServicioNegocio.paqueteriaSNG.$invalid || ioiContents"></span>
+                        <span data-toggle="tooltip" data-placement="left" title="Los servicios de negocio suelen ser sn y no ioi" class="glyphicon glyphicon-warning-sign orange" ng-hide="formServicioNegocio.paqueteriaSNG.$invalid || !ioiContents"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-1">Dependencia:</label>
+            <div class="col-xs-5">
+                <div class="input-group">
+                    <input type="text" class="form-control"  placeholder="CQPSC003_INS..." ng-model="sng.dependencia" required name="dependenciaSNG">
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formServicioNegocio.dependenciaSNG.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formServicioNegocio.dependenciaSNG.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+            <label class="control-label col-xs-1">Version:</label>
+            <div class="col-xs-3">
+                <div class="input-group">
+                    <input type="text" class="form-control"  placeholder="1.0 , 2.0 ...." ng-model="sng.dependenciaVersion" required name="dependenciaVersionSNG">
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formServicioNegocio.dependenciaVersionSNG.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formServicioNegocio.dependenciaVersionSNG.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-1">Description:</label>
+            <div class="col-xs-11">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="sng.description" required name="descripcionSNG">
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formServicioNegocio.descripcionSNG.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formServicioNegocio.descripcionSNG.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="control-label col-xs-1">injectMaven:</label>
+            <div class="col-xs-11">
+                <input type="text" class="form-control" placeholder="Descripcion..." disabled ng-model="sng.dependenciaCommand">
+            </div>
+        </div>
+        
+    </form>
+
+    <hr>
+
+    <button class="btn btn-warning" ng-click="fileWrite()" ng-disabled="formServicioNegocio.$invalid || sngModified">Make SNG</button>
+    <button class="btn btn-info" ng-click="fileDownload()" ng-show="sngMaked">Download SNG</button>
+
+
+</div>

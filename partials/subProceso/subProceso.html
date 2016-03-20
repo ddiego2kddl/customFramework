@@ -1,0 +1,313 @@
+<div class="container">	
+	<form class="form-horizontal" name="formSuproceso">
+        <div class="form-group">
+            <label class="control-label col-xs-1">Nombre:</label>
+            <div class="col-xs-5">
+                <div class="input-group">
+                    <input type="text" name="nameSUB"class="form-control" placeholder="ConsultarLiqRepartoMargenConfirmingCliente" ng-model="sbp.subproceso.name" required>
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formSuproceso.nameSUB.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formSuproceso.nameSUB.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="control-label col-xs-1">Paqueteria:</label>
+            <div class="col-xs-11">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="com.bankia.ioi.financiacion.confirmingcliente.repartomargenes.consultar" ng-model="sbp.subproceso.paqueteria" required name="paqueteriaSUB">
+                    <span class="input-group-addon">
+                        <span data-toggle="tooltip" data-placement="left" title="Campo Obligatorio" class="glyphicon glyphicon-remove red help" ng-show="formSuproceso.paqueteriaSUB.$invalid"></span>
+                        <span class="glyphicon glyphicon glyphicon-ok green" ng-hide="formSuproceso.paqueteriaSUB.$invalid"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+        	<div class="col-xs-12">
+        		<label>Lista de Views, Models y Infos</label>
+        	</div>
+        	<div class="col-xs-4 container">
+        		<div class="input-group">
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-secondary" type="button" ng-click="addView()">+ View</button>
+			      	</span>
+			      	<input type="text" class="form-control" placeholder="nombreView" ng-model="sbp.newView">
+			    </div>
+			    <div class="padding-top">
+			    	<div class="container" ng-repeat="view in sbp.views">
+			    		<p><span class="glyphicon glyphicon-remove-circle iconButton" ng-click="removeView($index)"></span> {{view}}</p>
+			    	</div>
+			    </div>
+        	</div>
+        	<div class="col-xs-4 container">
+        		<div class="input-group">
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-secondary" type="button" ng-click="addModel()">+ Model</button>
+			      	</span>
+			      	<input type="text" class="form-control" placeholder="nombreModel" ng-model="sbp.newModel">
+			    </div>
+			    <div class="padding-top">
+			    	<div class="container" ng-repeat="model in sbp.models">
+			    		<p><span class="glyphicon glyphicon-remove-circle iconButton" ng-click="removeModel($index)"></span> {{model}}</p>
+			    	</div>
+			    </div>
+        	</div>
+        	<div class="col-xs-4 container">
+        		<div class="input-group">
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-secondary" type="button" ng-click="addInfo()">+ Info</button>
+			      	</span>
+			      	<input type="text" class="form-control" placeholder="nombreInfo" ng-model="sbp.newInfo">
+			    </div>
+			    <div class="padding-top">
+			    	<div class="container" ng-repeat="info in sbp.infos">
+			    		<p><span class="glyphicon glyphicon-remove-circle iconButton" ng-click="removeInfo($index)"></span> {{info}}</p>
+			    	</div>
+			    </div>
+        	</div>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+        	<div class="col-xs-12">
+        		<label>Lista de DAO's</label>
+        		<button type="button" class="btn btn-primary pull-right btn-xs" ng-click="makeDAO()">+ Añadir Nuevo Dao</button>
+        	</div>
+
+            <div class="col-xs-12 container">
+            	<div class="container" ng-if="sbp.daos.length>0">
+	            	<table class="table table-condensed table-bordered table-striped">
+					    <thead>
+					      <tr>
+					        <th>Name</th>
+					        <th>Version</th>
+					        <th>GroupID</th>
+					        <th>Rellamada</th>
+					        <th class="text-center">Opciones</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr ng-repeat="dao in sbp.daos">
+					        <td>{{dao.name}}</td>
+					        <td>{{dao.version}}</td>
+					        <td>{{dao.groupId}}</td>
+					        <td>{{dao.rellamada}}</td>
+					        <td class="text-center">
+						        <span class="glyphicon glyphicon-edit iconButton" ng-click="makeDAO($index)"></span>
+						        &nbsp;&nbsp;  
+						        <span class="glyphicon glyphicon-remove-circle iconButton" ng-click="removeDAO($index)"></span>
+					        </td>
+					      </tr>
+					    </tbody>
+					  </table>
+				  </div>
+				<div ng-if="sbp.daos.length==0">
+				  	<p>No hay DAO's añadidos</p>
+				</div>
+            </div>
+        </div>
+
+
+        <hr>
+
+        <div class="form-group">
+        	<div class="col-xs-12">
+        		<label>Lista de SNG's</label>
+        			<button type="button" class="btn btn-primary pull-right btn-xs" ng-click="makeSNG()">+ Añadir Nuevo SNG</button>
+        	</div>
+
+            <div class="col-xs-12 container">
+            	<div class="container" ng-if="sbp.sngs.length>0">
+	            	<table class="table table-condensed table-bordered table-striped">
+					    <thead>
+					      <tr>
+					        <th>Name</th>
+					        <th>Version</th>
+					        <th>GroupID</th>
+					        <th>Rellamada</th>
+					        <th class="text-center">Opciones</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr ng-repeat="sng in sbp.sngs">
+					        <td>{{sng.name}}</td>
+					        <td>{{sng.version}}</td>
+					        <td>{{sng.groupId}}</td>
+					        <td>{{sng.rellamada}}</td>
+					        <td class="text-center">
+						        <span class="glyphicon glyphicon-edit iconButton" ng-click="makeSNG($index)"></span>
+						        &nbsp;&nbsp;  
+						        <span class="glyphicon glyphicon-remove-circle iconButton" ng-click="removeSNG($index)"></span>
+					        </td>
+					      </tr>
+					    </tbody>
+					  </table>
+				  </div>
+				<div ng-if="sbp.sngs.length==0">
+				  	<p>No hay SNG's añadidos</p>
+				</div>
+            </div>
+        </div>
+
+        <hr>
+
+
+
+        <div class="form-group">
+        	<div class="col-xs-12">
+        		<label>Lista de IUs asociados a su VIEWs</label>
+        	</div>
+        	<div class="col-xs-5">
+        		<div class="input-group">
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-secondary" type="button" ng-click="addIu()">+ IU</button>
+			      	</span>
+			      	<input type="text" class="form-control" placeholder="nombreIU" ng-model="newIu.name">
+			      	
+			    </div>
+
+        	</div>
+			<div class="col-xs-2 text-center">
+				<span>Asociada a:</span>
+			</div>
+        		<div class="col-xs-5">
+					    <select ng-model="newIu.view" ng-options="view as view for view in sbp.views" class="form-control">
+					    	<option value="">-- Selecciona el View asociado--</option>
+					    </select>
+				</div>
+
+			    <div class="padding-top col-xs-12">
+			    	<div class="container" ng-repeat="iu in sbp.ius">
+			    		<p><span class="glyphicon glyphicon-remove-circle iconButton" ng-click="removeIu($index)"></span> {{iu.name}} --> {{iu.view}}</p>
+			    	</div>
+			    </div>
+        </div>
+
+        <hr>
+
+
+        <div class="form-group">
+        	<div class="col-xs-12">
+        		<label>Lista de Actions asociados a su SNG/DAO</label>
+        	</div>
+        	<div class="col-xs-5">
+        		<div class="input-group">
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-secondary" type="button" ng-click="addAction()">+ ACTION</button>
+			      	</span>
+			      	<input type="text" class="form-control" placeholder="nombreAction" ng-model="newAction.name">
+			      	
+			    </div>
+
+        	</div>
+			<div class="col-xs-2 text-center">
+				<span>Asociada a:</span>
+			</div>
+        		<div class="col-xs-5">
+					    <select ng-model="newAction.sngDao" ng-options="sngDao as sngDao.name for sngDao in sbp.sngDaos" class="form-control">
+					    	<option value="">-- Selecciona el SNG o DAO asociado --</option>
+					    </select>
+				</div>
+
+			    <div class="padding-top col-xs-12">
+			    	<div class="container" ng-repeat="action in sbp.actions">
+			    		<p><span class="glyphicon glyphicon-remove-circle iconButton" ng-click="removeAction($index)"></span> {{action.name}} --> {{action.sngDao.name}}</p>
+			    	</div>
+			    </div>
+        </div>
+
+        <hr>
+			
+        <div class="form-group">
+        	<div class="col-xs-12">
+        		<label>ActionStates</label>
+        	</div>
+        	<div class="col-xs-12">
+	        	<accordion>
+			            <accordion-group heading="{{action2.name}}" ng-repeat="action2 in sbp.actions">
+			            	<div class="col-xs-2">
+				                <div class="radio">
+									  <label><input type="checkbox" ng-model="action2.onSuccess.value"> on 'Succes'</label>
+								</div>
+							</div>
+							<div class="col-xs-10">
+								<select ng-model="action2.onSuccess.iu" ng-options="iu as iu.name for iu in sbp.ius" class="form-control">
+							    	<option value="">-- Selecciona el IU target --</option>
+							    </select>
+							</div>
+							<div class="col-xs-2">
+				                <div class="radio">
+									  <label><input type="checkbox" ng-model="action2.onError.value"> on 'Error' </label>
+								</div>
+							</div>
+							<div class="col-xs-10">
+								<select ng-model="action2.onError.iu" ng-options="iu as iu.name for iu in sbp.ius" class="form-control">
+							    	<option value="">-- Selecciona el IU target --</option>
+							    </select>
+							</div>
+			            </accordion-group>
+			    <accordion>
+		    </div>
+        </div>
+
+
+
+        <div class="form-group">
+        	<div class="col-xs-12">
+        		<label>ViewState</label>
+        	</div>
+        	<div class="col-xs-12">
+	        	<accordion>
+			            <accordion-group heading="{{iu.name}}" ng-repeat="iu in sbp.ius">
+			            	<div class="col-xs-12">
+				        		<label>Lista de Transitions de la ViewState</label>
+				        	</div>
+				        	<div class="col-xs-2 text-right">
+			            		<button class="btn btn-info" ng-click="addTransition(iu)"> + Transition</button>
+							</div>
+				        	<div class="col-xs-5">
+								    <select ng-model="transitionSelected.action" ng-options="action as action.name for action in sbp.actions" class="form-control">
+								    	<option value="">-- Selecciona el Action del Transtion --</option>
+								    </select>
+							</div>
+			        		<div class="col-xs-5">
+								    <select ng-model="transitionSelected.model" ng-options="model as model for model in sbp.models" class="form-control">
+								    	<option value="">-- Selecciona el Model asociado solo si lo tiene --</option>
+								    </select>
+							</div>
+						    <div class="padding-top col-xs-12">
+						    	<div class="container row" ng-repeat="transition in iu.transitions">
+							    	<label class="col-xs-1 tex-center">
+									    <input type="radio" ng-model="iu.outDTO" ng-value="transition.action.sngDao">
+									</label>
+									<div class="col-xs-11">
+						    			<p><span class="glyphicon glyphicon-remove-circle iconButton" ng-click="removeTransition($index,iu)"></span> {{transition.action.name}} --> {{transition.model}}</p>
+						    		</div>
+						    		
+						    	</div>
+						    </div>
+			            </accordion-group>
+			    <accordion>
+		    </div>
+        </div>
+        
+    </form>
+
+    <hr>
+
+
+    
+
+
+
+    <button class="btn btn-warning" ng-click="fileWrite()" ng-disabled="formSuproceso.$invalid || sngModified">Make SBP</button>
+    <button class="btn btn-info" ng-click="fileDownload()" ng-show="sngMaked">Download SBP</button>
+
+
+</div>
